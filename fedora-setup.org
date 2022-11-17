@@ -30,3 +30,4 @@ machine cd_sspxza login j.jenkins password ******
 ** do a dry run to see if it works
 python2 asynk.py --op=sync --dry-run
 ** sync when you want !
+
