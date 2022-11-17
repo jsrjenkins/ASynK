@@ -1,0 +1,32 @@
+* Download the repository
+There is a fork at https://github/jsrjenkins/ASynK
+* Install Python 2 for Fedora
+** Prerequisites
+dnf install gcc openssl-devel bzip2-devel
+** Download Python2
+wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz
+tar xzf Python-2.7.18.tgz
+** Install Python 2.7
+cd Python-2.7.18
+./configure --enable-optimizations
+make altinstall ## this prevents overwriting existing python
+** Check version
+/usr/local/bin/python2.7 -V
+** Install pip for python 2.7
+curl "https://bootstrap.pypa.io/pip/2.7/get-pip.py" -o "get-pip.py"
+python2 get-pip.py
+* Install the ASynK requirements
+cd ASynK
+python2 -m pip install -r requirements.txt
+## Note that some of the requirements will need to be downgraded to be used with python2.7. You simply do:
+python2 -m pip install rsa==4.5
+## example for package rsa
+
+* USING THE PROGRAM
+** Set up the profile
+python2 asynk.py --op=create-profile --name sspxza --db bb cd --folder default default --store ~/.emacs.d/bbdb https://docs.sspx.org.za/remote.php/carddav --cduser=j.jenkins
+** put the passwords in .netrc
+machine cd_sspxza login j.jenkins password ******
+** do a dry run to see if it works
+python2 asynk.py --op=sync --dry-run
+** sync when you want !
